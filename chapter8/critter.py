@@ -4,15 +4,15 @@ class Critter(object):
     def __init__(self, name, hunger=0, bordom=0):
         self.__name = name
         self.__hunger = hunger
-        self.__bordom = bordom
+        self.__boredom = bordom
 
-    def passTime(self):
-        self.__bordom += 1
+    def __passTime(self):
+        self.__boredom += 1
         self.__hunger += 1
 
     @property
     def mood(self):
-        mood = self.__bordom + self.__hunger
+        mood = self.__boredom + self.__hunger
         if mood < 5:
             return 'Excellent'
         elif mood < 10:
@@ -37,9 +37,51 @@ class Critter(object):
     def increaseLegs():
         Critter.legs += 1
 
+    def play(self):
+        print("Yehooo")
+        self.__boredom -= 1
+        if self.__boredom < 0:
+            self.__boredom = 0
+        self.__passTime()
 
-crit1 = Critter("bobik", 1, 2)
-crit2 = Critter("Tusik", 4, 1)
+    def eat(self):
+        print('Murr, thanks!')
+        self.__hunger -= 1
+        if self.__hunger < 0:
+            self.__hunger = 0
+        self.__passTime()
 
-print(crit1)
-print(crit2)
+    def talk(self):
+        print(self.__str__())
+        self.__passTime()
+
+
+def main():
+    name = input("How will you call your critter!? ")
+    crit1 = Critter(name, 1, 2)
+    print(crit1)
+
+    choice = None
+    while choice != '0':
+        print("""
+        My critter:
+        0 - Quit
+        1 - Find out how does your critter feeling
+        2 - To feed the critter
+        3 - Play with critter!
+        """)
+        choice = input("Your choice is: ")
+        if choice == '0':
+            print('Goodbye!')
+        elif choice == '1':
+            crit1.talk()
+        elif choice == '2':
+            crit1.eat()
+        elif choice == '3':
+            crit1.play()
+        else:
+            print('Sorry there is no such choice in this menu')
+
+
+main()
+input('Press enter to quit')

@@ -1,0 +1,17 @@
+Computer vision
+SIFT algorithm
+One main part of SIFT algorithm is:
+Chi-square dispersion
+Hessian matrix
+Difference of Gaussian
+Bag of words
+3
+Difference of Gaussian algorithm computes a pyramid of gaussian with /different scales of gaussian filter
+Simple image processing
+What does it call when histogram of image brightness is changed in /way when there is all kind of brightness level with close to average value
+Histogram maximization
+Histogram normalization
+Derivety of histogram
+Histogram minimization
+2
+This is normalization, sometimes processed with cumulative distribution function

@@ -6,7 +6,7 @@ class Critter(object):
         self.__hunger = hunger
         self.__boredom = bordom
 
-    def __passTime(self):
+    def __pass_time(self):
         self.__boredom += 1
         self.__hunger += 1
 
@@ -37,27 +37,29 @@ class Critter(object):
     def increaseLegs():
         Critter.legs += 1
 
-    def play(self):
+    def play(self, play_time=1):
         print("Yehooo")
-        self.__boredom -= 1
+        self.__boredom -= play_time
         if self.__boredom < 0:
             self.__boredom = 0
-        self.__passTime()
+        self.__pass_time()
 
-    def eat(self):
+    def eat(self, eat_amount=1):
         print('Murr, thanks!')
-        self.__hunger -= 1
+        self.__hunger -= eat_amount
         if self.__hunger < 0:
             self.__hunger = 0
-        self.__passTime()
+        self.__pass_time()
 
     def talk(self):
         print(self.__str__())
-        self.__passTime()
+        self.__pass_time()
 
+    def hidden__str__(self):
+        return str(self.__boredom) + ' ' + str(self.__hunger)
 
 def main():
-    name = input("How will you call your critter!? ")
+    name = raw_input("How will you call your critter!? ")
     crit1 = Critter(name, 1, 2)
     print(crit1)
 
@@ -70,18 +72,18 @@ def main():
         2 - To feed the critter
         3 - Play with critter!
         """)
-        choice = input("Your choice is: ")
+        choice = raw_input("Your choice is: ")
         if choice == '0':
             print('Goodbye!')
         elif choice == '1':
             crit1.talk()
         elif choice == '2':
-            crit1.eat()
+            feed_amount = int(raw_input("How much want to eat: "))
+            crit1.eat(feed_amount)
         elif choice == '3':
-            crit1.play()
+            play_time = int(raw_input("How much want to eat: "))
+            crit1.play(play_time)
+        elif choice == '12321':
+            print crit1.hidden__str__()
         else:
             print('Sorry there is no such choice in this menu')
-
-
-main()
-input('Press enter to quit')

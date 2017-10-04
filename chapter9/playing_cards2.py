@@ -1,49 +1,14 @@
-import random
+from __future__ import print_function
+from chapter9 import *
 
-
-class Card(object):
-    RANKS = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'J', 'Q', 'K']
-    SUITS = ['CLUBS', 'DIAMONDS', 'SPADES', 'HEARDS']
-
-    def __init__(self, rank, suit):
-        self.__rank = rank
-        self.__suit = suit
-
-    def __str__(self):
-        return '[' + self.__rank + ' ' + self.__suit + ']'
-
-
-class Hand(object):
-    def __init__(self):
-        self.__cards = []
-
-    def getCards(self):
-        return self.__cards
-
-    def setCards(self, cards):
-        self.__cards = cards
-
-    def __str__(self):
-        result = ""
-        if not self.__cards:
-            result = 'Empty!'
-        else:
-            for card in self.__cards:
-                result += str(card) + ' '
-        return result
-
-    def clear(self):
-        self.__cards = []
-
-    def add(self, card):
-        self.__cards.append(card)
-
-    def give(self, card, otherHand):
-        self.__cards.remove(card)
-        otherHand.__cards.append(card)
-
-
-class Desk(Hand):
-    def populate(self):
-        self.setCards([])
-
+deck = Deck()
+deck.populate()
+print(deck)
+print('\n')
+print(deck)
+vasya = Hand()
+petya = Hand()
+deck.deal([vasya, petya], 4)
+print('Petya ' + petya.__str__(), end='\n')
+print('Vasya ' + vasya.__str__())
+print('left in deck ' + str(len(deck.getCards())))
